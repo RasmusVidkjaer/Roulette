@@ -2,10 +2,11 @@
 function Roulette
 %chadias start funktion
 saldo = input("Hvormanget vil du spille for? ");
-chips = saldo * 10;
+startchips = saldo * 10;
+chips = startchips;
 disp("Du har " + chips + " chips, at spille for.")
 
-%placering af bet
+%placering af bet på tal
 for i = 1:1000000000
     tal = input("Vil du bette på et tal? ","s");
     while tal ~= ["ja","nej"]
@@ -19,7 +20,7 @@ for i = 1:1000000000
             disp("Ikke muligt prøv igen!");
             Bnummer = input( "Vælg et tal mellem 0 og 36. ");
         end
-        chipsnummer = input("Hvormange chips vil du bette på " + Bnummer + "? "); % (Lav en grænse på dette input, og sådan at man kan skrive "nej")
+        chipsnummer = input("Hvormange chips vil du bette på " + Bnummer + "? "); 
         
         while chipsnummer > chips
             disp("Du har desvære ikke chips nok")
@@ -32,8 +33,8 @@ for i = 1:1000000000
         chips = chips - chipsnummer;
         
     end
-    
-    Bfarve = " "; %sætter variablen
+    %placering af bet på farve
+    Bfarve = " "; 
     farve = strip(input( "Vil du bette på en farve? ", "s"));
     while farve ~= ["ja","nej"]
         disp("Svar med ja eller nej");
@@ -57,6 +58,7 @@ for i = 1:1000000000
         end
     end
     
+    %placering af bet på specialefeldt
     Bspecial = " "; %sætter variablen
     special = input( "Vil du bette på en specialefeldt? ", "s");
     while special ~= ["ja","nej"]
@@ -80,10 +82,12 @@ for i = 1:1000000000
             chips = chips - chipsspecial;
         end
     end
-    %Berarbejdning af bet:
     
+    
+    %Berarbejdning af bet:
     R = randi(36);
     
+    %arrays
     Even = [2:2:36];
     Odd = [1:2:35];
     Red = [1:2:9,12:2:18,19:2:27,30:2:36];
@@ -94,6 +98,7 @@ for i = 1:1000000000
     D=[1:18];
     E=[19:36];
     
+    %Vis hvor kulen landede
     if ismember(R,Even)
         if ismember(R,Red)
             disp("Kuglen landede på "+R+" som er lige og rød.")
@@ -108,12 +113,14 @@ for i = 1:1000000000
         end
     end
     
+    %Tal behandling
     if Bnummer == R
         chipsnummer = chip*36;
     else
         chipsnummer = 0;
     end
     
+    %Farve behandling
     if Bfarve == "Rød" && ismember(R,Red) || Bfarve == "rød" && ismember(R,Red)
         chipsfarve = chipsfarve*2;
     elseif Bfarve == "Sort" && ismember(R,Black) || Bfarve == "sort" && ismember(R,Black)
@@ -122,6 +129,7 @@ for i = 1:1000000000
         chipsfarve = 0;
     end
     
+    %Special behandling
     if Bspecial == "Even" && ismember(R,Even)
         chipsspecial = chipsspecial*2;
     elseif Bspecial == "Odd" && ismember(R, Odd)
@@ -140,21 +148,37 @@ for i = 1:1000000000
         chipsspecial = 0;
     end
     
-    chips = chipsnummer + chipsfarve + chipsspecial;
-    disp("Du har nur "+chips+" chips. Tillykke!")
+    
+   
+    
+    %Afrunding af program
+    chips = chips + chipsnummer + chipsfarve + chipsspecial;
+    if chips < startchips
+        disp("Du har nu "+chips+" chips! Bedre held næste gang!")
+    elseif chips >= startchips
+        disp("Tillykke! Du har nu "+chips+" chips!")
+    end
+    
+    
+    %datainsamling
     data(i)=chips;
     
     
-    start = input("vil du fortsætte","s");
-    if start == "nej";
-        break
-    end
+    
+    %Slut?
     if chips==0
         break
     end
-    
+    start = input("vil du fortsætte? ","s");
+    if start == "nej";
+        break
+    end
 end
 x=linspace(1,i,i);
 plot(x,data,"-o")
+xlabel('Antal spil')
+ylabel('Chips')
+titel('Graf over dit spilleforløb')
+
 
 
