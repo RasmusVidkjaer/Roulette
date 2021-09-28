@@ -1,13 +1,12 @@
-%Filnavn alt
-function alt
+%filnavn: Roulette
+function Roulette
 %chadias start funktion
 saldo = input("Hvormanget vil du spille for? ");
 chips = saldo * 10;
 disp("Du har " + chips + " chips, at spille for.")
 
 %placering af bet
-start = ("ja");
-while start ~= ("nej")
+
     tal = input("vil du bette på et tal? ","s");
     if tal == "ja"
         Bnummer = ' ';
@@ -131,4 +130,3 @@ end
     
     chips = chipsnummer + chipsfarve + chipsspecial;
     disp("Du har nur "+chips+" chips. Tillykke!")
-end
