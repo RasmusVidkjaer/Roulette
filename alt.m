@@ -178,7 +178,10 @@ x=linspace(1,i,i);
 plot(x,data,"-o")
 xlabel('Antal spil')
 ylabel('Chips')
-titel('Graf over dit spilleforløb')
+title('Graf over dit spilleforløb')
+%hentet fra https://se.mathworks.com/matlabcentral/answers/491194-how-to-change-the-x-axis-labels-of-a-plot-so-that-they-only-show-integer-values
+ax = gca;
+ax.XTick = unique( round(ax.XTick) );
 
 
 
