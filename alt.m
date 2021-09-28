@@ -174,6 +174,8 @@ for i = 1:1000000000
         break
     end
 end
+disp("Din saldo er " + (chips/10) + " kr.")
+figure(1)
 x=linspace(1,i,i);
 plot(x,data,"-o")
 xlabel('Antal spil')
@@ -182,6 +184,3 @@ title('Graf over dit spilleforløb')
 %hentet fra https://se.mathworks.com/matlabcentral/answers/491194-how-to-change-the-x-axis-labels-of-a-plot-so-that-they-only-show-integer-values
 ax = gca;
 ax.XTick = unique( round(ax.XTick) );
-
-
-
