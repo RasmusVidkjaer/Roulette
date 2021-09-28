@@ -10,20 +10,20 @@ start = ("ja");
 while start ~= ("nej")
     tal = input("vil du bette på et tal? ","s");
     if tal == "ja"
-        bet = ' ';
-        bet = input( "Vælg et tal mellem 0 og 36 ");  %Her kan der bettes på ét tal mellem 0-36
-        while bet ~= [0:36]
+        Bnummer = ' ';
+        Bnummer = input( "Vælg et tal mellem 0 og 36 ");  %Her kan der bettes på ét tal mellem 0-36
+        while Bnummer ~= [0:36]
             disp("Ikke muligt prøv igen");
-            bet = input( "Vælg et tal mellem 0 og 36 ");
+            Bnummer = input( "Vælg et tal mellem 0 og 36 ");
         end
-        chipsnummer = input("Hvormange chips vil du bette på " + bet + "? "); % (Lav en grænse på dette input, og sådan at man kan skrive "nej")
+        chipsnummer = input("Hvormange chips vil du bette på " + Bnummer + "? "); % (Lav en grænse på dette input, og sådan at man kan skrive "nej")
         
         while chipsnummer > chips
             disp("Du har desvære ikke chips nok")
             pause(0.5)
             disp("Du har " + chips + " chips")
             pause(0.5)
-            chipsnummer = input("Hvormange chips vil du bette på " + bet + "? ");
+            chipsnummer = input("Hvormange chips vil du bette på " + Bnummer + "? ");
         end
         
         chips = chips - chipsnummer;
@@ -97,7 +97,7 @@ else ismember(R, Odd)
     end
 end
 
-    if bet == R
+    if Bnummer == R
         chipsnummer = chip*36;
     else
         chipsnummer = 0;
