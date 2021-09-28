@@ -6,10 +6,14 @@ chips = saldo * 10;
 disp("Du har " + chips + " chips, at spille for.")
 
 %placering af bet
-
+for i = 1:1000000000
     tal = input("Vil du bette på et tal? ","s");
+    while tal ~= ["ja","nej"]
+        disp("Svar med ja eller nej");
+        tal = input("Vil du bette på et tal? ","s");
+    end
+    Bnummer = ' ';
     if tal == "ja" || tal == "Ja"
-        Bnummer = ' ';
         Bnummer = input( "Vælg et tal mellem 0 og 36. ");  %Her kan der bettes på ét tal mellem 0-36
         while Bnummer ~= [0:36]
             disp("Ikke muligt prøv igen!");
@@ -28,9 +32,13 @@ disp("Du har " + chips + " chips, at spille for.")
         chips = chips - chipsnummer;
         
     end
-
+    
     Bfarve = " "; %sætter variablen
     farve = strip(input( "Vil du bette på en farve? ", "s"));
+    while farve ~= ["ja","nej"]
+        disp("Svar med ja eller nej");
+        farve = input("Vil du bette på en farve? ","s");
+    end
     if farve == ("ja") || farve == ("Ja")
         while Bfarve ~= ["sort", "Sort", "rød", "Rød", "nej", "Nej"]
             Bfarve = input("Hvilken farve ville du bette på? ", "s");   %her kan der bettes på Rød eller Sort
@@ -51,9 +59,13 @@ disp("Du har " + chips + " chips, at spille for.")
     
     Bspecial = " "; %sætter variablen
     special = input( "Vil du bette på en specialefeldt? ", "s");
+    while special ~= ["ja","nej"]
+        disp("Svar med ja eller nej");
+        special = input("Vil du bette på special? ","s");
+    end
     if special == ("ja") || special == ("Nej")
         while Bspecial ~= ["Even", "Odd", "1:12", "13:24", "25:36", "1:18", "19:36", "Nej"]
-            Bspecial = input("På hvilket specialefeldt vil du placer dit chip? Even, Odd, 1:12, 13:24, 25:36, 1:18, 19:36. ","s"); 
+            Bspecial = input("På hvilket specialefeldt vil du placer dit chip? Even, Odd, 1:12, 13:24, 25:36, 1:18, 19:36. ","s");
             while Bspecial ~= ["Even", "Odd", "1:12", "13:24", "25:36", "1:18", "19:36"]
                 disp("Dette input er dsv ikke muligt prøv med Even, Odd, 1:12, 13:24, 25:36, 1:18, 19:36")
                 Bspecial = input("På hvilket specialefeldt vil du placer dit chip? Even, Odd, 1:12, 13:24, 25:36, 1:18, 19:36. ","s");
@@ -69,39 +81,39 @@ disp("Du har " + chips + " chips, at spille for.")
         end
     end
     %Berarbejdning af bet:
-
-R = randi(36);
-
-Even = [2:2:36];
-Odd = [1:2:35];
-Red = [1:2:9,12:2:18,19:2:27,30:2:36];
-Black = [2:2:10,11:2:17,20:2:28,29:2:35];
-A=[1:12];
-B=[13:24];
-C=[25:36];
-D=[1:18];
-E=[19:36];
-
-if ismember(R,Even)
-    if ismember(R,Red)
-    disp("Kuglen landede på "+R+" som er lige og rød.")
-    else
-        disp("Kuglen landede på "+R+" som er lige og sort.")
+    
+    R = randi(36);
+    
+    Even = [2:2:36];
+    Odd = [1:2:35];
+    Red = [1:2:9,12:2:18,19:2:27,30:2:36];
+    Black = [2:2:10,11:2:17,20:2:28,29:2:35];
+    A=[1:12];
+    B=[13:24];
+    C=[25:36];
+    D=[1:18];
+    E=[19:36];
+    
+    if ismember(R,Even)
+        if ismember(R,Red)
+            disp("Kuglen landede på "+R+" som er lige og rød.")
+        else
+            disp("Kuglen landede på "+R+" som er lige og sort.")
+        end
+    else ismember(R, Odd)
+        if ismember(R,Black)
+            disp("Kuglen landede på "+R+" som er ulige og sort.")
+        else
+            disp("Kuglen landede på "+R+" som er ulige og rød.")
+        end
     end
-else ismember(R, Odd)
-    if ismember(R,Black)
-    disp("Kuglen landede på "+R+" som er ulige og sort.")
-    else
-        disp("Kuglen landede på "+R+" som er ulige og rød.")
-    end
-end
-
+    
     if Bnummer == R
         chipsnummer = chip*36;
     else
         chipsnummer = 0;
     end
-
+    
     if Bfarve == "Rød" && ismember(R,Red) || Bfarve == "rød" && ismember(R,Red)
         chipsfarve = chipsfarve*2;
     elseif Bfarve == "Sort" && ismember(R,Black) || Bfarve == "sort" && ismember(R,Black)
@@ -130,3 +142,19 @@ end
     
     chips = chipsnummer + chipsfarve + chipsspecial;
     disp("Du har nur "+chips+" chips. Tillykke!")
+    data(i)=chips;
+    
+    
+    start = input("vil du fortsætte","s");
+    if start == "nej";
+        break
+    end
+    if chips==0
+        break
+    end
+    
+end
+x=linspace(1,i,i);
+plot(x,data,"-o")
+
+
