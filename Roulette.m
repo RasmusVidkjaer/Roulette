@@ -14,8 +14,8 @@ disp("Du har " + chips + " chips, at spille for.")
 %placering af bet
 start = ("ja");
 while start ~= ("nej")
-    x = input("vil du bette på et tal? ","s");
-    if x == "ja"
+    tal = input("vil du bette på et tal? ","s");
+    if tal == "ja"
         Bnummer = ' ';
         Bnummer = input( "Vælg et tal mellem 0 og 36 ");  %Her kan der bettes på ét tal mellem 0-36
         while Bnummer ~= [0:36]
@@ -39,12 +39,9 @@ while start ~= ("nej")
     
     
     
-    
-    
-    
     Bfarve = " "; %sætter variablen
-    y = input( "Vil du bette på en farve? ", "s");
-    if y == ("ja")
+    farve = input( "Vil du bette på en farve? ", "s");
+    if farve == ("ja")
         while Bfarve ~= ["sort", "rød", "nej"]
             Bfarve = input("Hvilken farve ville du bette på", "s");   %her kan der bettes på Rød eller Sort
             while Bfarve ~= ["sort", "rød"]
