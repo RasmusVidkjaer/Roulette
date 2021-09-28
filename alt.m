@@ -1,10 +1,16 @@
 %filnavn: Roulette
 function Roulette
 %chadias start funktion
+disp("Velkommen til Kursus 62646 Casino Royale!")
+pause(1)
+disp("Aftens spil er Roulette.")
+pause(1)
+disp("En guldchip koster 100kr.")
 saldo = input("Hvormanget vil du spille for? ");
-startchips = saldo * 10;
+startchips = (saldo-mod(saldo,100))/100;
 chips = startchips;
-disp("Du har " + chips + " chips, at spille for.")
+
+disp("Du har " + chips + " chips, at spille for. Dine "+mod(saldo,100)+"kr beholder du.")
 
 %placering af bet på tal
 for i = 1:1000000000
@@ -174,7 +180,8 @@ for i = 1:1000000000
         break
     end
 end
-disp("Din saldo er " + (chips/10) + " kr.")
+saldo = (chips*100) + mod(saldo,100)
+disp("Din saldo er " +saldo+ " kr.")
 figure(1)
 x=linspace(1,i,i);
 plot(x,data,"-o")
