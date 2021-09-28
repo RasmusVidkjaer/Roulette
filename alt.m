@@ -7,20 +7,20 @@ disp("Du har " + chips + " chips, at spille for.")
 
 %placering af bet
 
-    tal = input("vil du bette på et tal? ","s");
-    if tal == "ja"
+    tal = input("Vil du bette på et tal? ","s");
+    if tal == "ja" || tal == "Ja"
         Bnummer = ' ';
-        Bnummer = input( "Vælg et tal mellem 0 og 36 ");  %Her kan der bettes på ét tal mellem 0-36
+        Bnummer = input( "Vælg et tal mellem 0 og 36. ");  %Her kan der bettes på ét tal mellem 0-36
         while Bnummer ~= [0:36]
-            disp("Ikke muligt prøv igen");
-            Bnummer = input( "Vælg et tal mellem 0 og 36 ");
+            disp("Ikke muligt prøv igen!");
+            Bnummer = input( "Vælg et tal mellem 0 og 36. ");
         end
         chipsnummer = input("Hvormange chips vil du bette på " + Bnummer + "? "); % (Lav en grænse på dette input, og sådan at man kan skrive "nej")
         
         while chipsnummer > chips
             disp("Du har desvære ikke chips nok")
             pause(0.5)
-            disp("Du har " + chips + " chips")
+            disp("Du har " + chips + " chips.")
             pause(0.5)
             chipsnummer = input("Hvormange chips vil du bette på " + Bnummer + "? ");
         end
@@ -30,20 +30,20 @@ disp("Du har " + chips + " chips, at spille for.")
     end
 
     Bfarve = " "; %sætter variablen
-    farve = input( "Vil du bette på en farve? ", "s");
-    if farve == ("ja")
+    farve = strip(input( "Vil du bette på en farve? ", "s"));
+    if farve == ("ja") || farve == ("Ja")
         while Bfarve ~= ["sort", "Sort", "rød", "Rød", "nej", "Nej"]
-            Bfarve = input("Hvilken farve ville du bette på", "s");   %her kan der bettes på Rød eller Sort
+            Bfarve = input("Hvilken farve ville du bette på? ", "s");   %her kan der bettes på Rød eller Sort
             while Bfarve ~= ["sort", "Sort", "rød", "Rød"]
-                disp("Dette input er dsv ikke muligt prøv med sort eller rød")
-                Bfarve = input("Hvilken farve ville du bette på", "s");
+                disp("Dette input er dsv ikke muligt prøv med sort/Sort eller rød/Rød.")
+                Bfarve = input("Hvilken farve ville du bette på? ", "s");
             end
             pause(0.5)
-            chipsfarve = input("Hvormange chips vil du bette på " + Bfarve);
+            chipsfarve = input("Hvormange chips vil du bette på " + Bfarve+"? ");
             while chipsfarve > chips
-                disp("Du har desvære ikke chips nok")
-                disp("Du har " + chips + " chips")
-                chipsfarve = input("Hvormange chips vil du bette på " + Bfarve);
+                disp("Du har desvære ikke chips nok!")
+                disp("Du har " + chips + " chips. ")
+                chipsfarve = input("Hvormange chips vil du bette på " + Bfarve+"? ");
             end
             chips = chips - chipsfarve;
         end
@@ -51,7 +51,7 @@ disp("Du har " + chips + " chips, at spille for.")
     
     Bspecial = " "; %sætter variablen
     special = input( "Vil du bette på en specialefeldt? ", "s");
-    if special == ("ja")
+    if special == ("ja") || special == ("Nej")
         while Bspecial ~= ["Even", "Odd", "1:12", "13:24", "25:36", "1:18", "19:36", "Nej"]
             Bspecial = input("På hvilket specialefeldt vil du placer dit chip? Even, Odd, 1:12, 13:24, 25:36, 1:18, 19:36. ","s"); 
             while Bspecial ~= ["Even", "Odd", "1:12", "13:24", "25:36", "1:18", "19:36"]
@@ -59,11 +59,11 @@ disp("Du har " + chips + " chips, at spille for.")
                 Bspecial = input("På hvilket specialefeldt vil du placer dit chip? Even, Odd, 1:12, 13:24, 25:36, 1:18, 19:36. ","s");
             end
             pause(0.5)
-            chipsspecial = input("Hvormange chips vil du bette på " + Bspecial);
+            chipsspecial = input("Hvormange chips vil du bette på " + Bspecial+"? ");
             while chipsspecial > chips
-                disp("Du har desvære ikke chips nok")
-                disp("Du har " + chips + " chips")
-                chipsspecial = input("Hvormange chips vil du bette på " + Bspecial);
+                disp("Du har desvære ikke chips nok!")
+                disp("Du har " + chips + " chips.")
+                chipsspecial = input("Hvormange chips vil du bette på " + Bspecial+"? ");
             end
             chips = chips - chipsspecial;
         end
@@ -84,15 +84,15 @@ E=[19:36];
 
 if ismember(R,Even)
     if ismember(R,Red)
-    disp("Kuglen landede på "+R+" som er lige og rød")
+    disp("Kuglen landede på "+R+" som er lige og rød.")
     else
-        disp("Kuglen landede på "+R+" som er lige og sort")
+        disp("Kuglen landede på "+R+" som er lige og sort.")
     end
 else ismember(R, Odd)
     if ismember(R,Black)
-    disp("Kuglen landede på "+R+" som er ulige og sort")
+    disp("Kuglen landede på "+R+" som er ulige og sort.")
     else
-        disp("Kuglen landede på "+R+" som er ulige og rød")
+        disp("Kuglen landede på "+R+" som er ulige og rød.")
     end
 end
 
@@ -102,9 +102,9 @@ end
         chipsnummer = 0;
     end
 
-    if Bfarve == "Rød" && ismember(R,Red)
+    if Bfarve == "Rød" && ismember(R,Red) || Bfarve == "rød" && ismember(R,Red)
         chipsfarve = chipsfarve*2;
-    elseif Bfarve == "Sort" && ismember(R,Black)
+    elseif Bfarve == "Sort" && ismember(R,Black) || Bfarve == "sort" && ismember(R,Black)
         chipsfarve = chipsfarve*2;
     else
         chipsfarve = 0;
