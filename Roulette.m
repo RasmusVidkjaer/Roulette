@@ -80,11 +80,12 @@ E=[19:36];
         
         
    
-    a = ["r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s","r","s"];
+
     
     %Berarbejdning af bet:
     R = randi(36);
     
+    %Tal
     for i=[0:36]
         if Bnummer==i
             if Bnummer == R
@@ -94,7 +95,9 @@ E=[19:36];
         end
     end
     
-    if Bfarve == a(R)
+    %Farve
+    if ismember(R,Red)
+        ismember(Bfarve,Red)
         disp("Du ramte plet på din farve!")
         chips = 2*chipsfarve;
         
